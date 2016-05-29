@@ -1,5 +1,6 @@
 /.bundle/
 /.yardoc
+/.zenhub2pivotal.yml
 /_yardoc/
 /coverage/
 /doc/

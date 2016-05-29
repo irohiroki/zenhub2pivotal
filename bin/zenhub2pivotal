@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+$:.push File.expand_path('../../lib', __FILE__)
+require 'zenhub2pivotal'
+
+Zenhub2pivotal::Cli.new(ARGV).run

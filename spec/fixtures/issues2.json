@@ -1,0 +1,43 @@
+[
+  {
+    "url": "https://api.github.com/repos/foo/bar/issues/3",
+    "repository_url": "https://api.github.com/repos/foo/bar",
+    "labels_url": "https://api.github.com/repos/foo/bar/issues/3/labels{/name}",
+    "comments_url": "https://api.github.com/repos/foo/bar/issues/3/comments",
+    "events_url": "https://api.github.com/repos/foo/bar/issues/3/events",
+    "html_url": "https://github.com/foo/bar/issues/3",
+    "id": 100000003,
+    "number": 3,
+    "title": "Title3",
+    "user": {
+      "login": "irohiroki",
+      "id": 152269,
+      "avatar_url": "https://avatars.githubusercontent.com/u/152269?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/irohiroki",
+      "html_url": "https://github.com/irohiroki",
+      "followers_url": "https://api.github.com/users/irohiroki/followers",
+      "following_url": "https://api.github.com/users/irohiroki/following{/other_user}",
+      "gists_url": "https://api.github.com/users/irohiroki/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/irohiroki/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/irohiroki/subscriptions",
+      "organizations_url": "https://api.github.com/users/irohiroki/orgs",
+      "repos_url": "https://api.github.com/users/irohiroki/repos",
+      "events_url": "https://api.github.com/users/irohiroki/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/irohiroki/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2016-03-25T05:15:37Z",
+    "updated_at": "2016-03-25T05:15:37Z",
+    "closed_at": null,
+    "body": "Body3"
+  }
+]
