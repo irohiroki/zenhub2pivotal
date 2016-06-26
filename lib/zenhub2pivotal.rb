@@ -30,7 +30,7 @@ module Zenhub2pivotal
     end
 
     def repositories
-      @repo_names.map do |repo_name|
+      @repositories ||= @repo_names.map do |repo_name|
         Repository.new(repo_name)
       end
     end

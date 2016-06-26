@@ -5,13 +5,14 @@ module Zenhub2pivotal
     end
 
     def self.repository(name)
-      Repository.new(name)
+      @repositories ||= {}
+      @repositories[name] ||= Repository.new(name)
     end
 
-    # TODO cache
     class IssueCache
       def initialize(repository)
         @repository = repository
+        @cache = []
       end
 
       def find_and_merge(zenhub_issue)
@@ -22,7 +23,14 @@ module Zenhub2pivotal
 
       def issues
         Enumerator.new do |yielder|
-          IssueLoader.new(@repository).load_paginating do |issue_data|
+          @cache.each do |issue_datum|
+            yielder << issue_datum
+          end
+
+          loop do
+            issue_data = loader.next
+            break if issue_data.nil?
+            @cache += issue_data
             issue_data.each do |issue_datum|
               yielder << issue_datum
             end
@@ -33,6 +41,10 @@ module Zenhub2pivotal
       def load
         issues
       end
+
+      def loader
+        @loader ||= IssueLoader.new(@repository)
+      end
     end
 
     class IssueLoader
@@ -40,15 +52,20 @@ module Zenhub2pivotal
         @repository = repository
       end
 
-      def load_paginating(&block)
-        GitHub.client.issues(@repository.name)
-        paginate(GitHub.client.last_response, &block)
-      end
-
-      def paginate(response, &block)
-        block.call(response.data)
-        return unless response.rels[:next]
-        paginate(response.rels[:next].get, &block)
+      def next
+        if @response
+          rel_next = @response.rels[:next]
+          if rel_next
+            @response = rel_next.get
+            @response.data
+          else
+            nil
+          end
+        else
+          GitHub.client.issues(@repository.name)
+          @response = GitHub.client.last_response
+          @response.data
+        end
       end
     end
 
@@ -68,7 +85,7 @@ module Zenhub2pivotal
       end
 
       def issues
-        IssueCache.new(self)
+        @issue_cache ||= IssueCache.new(self)
       end
     end
   end

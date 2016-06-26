@@ -9,7 +9,7 @@ module Zenhub2pivotal
     end
 
     def board
-      ZenHub.new(id).board
+      @board ||= ZenHub.new(id).board
     end
 
     def github_issues

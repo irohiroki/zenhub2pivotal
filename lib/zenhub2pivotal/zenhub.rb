@@ -5,7 +5,7 @@ module Zenhub2pivotal
     end
 
     def board
-      Board.new(client.board_data(@id).body)
+      @board ||= Board.new(client.board_data(@id).body)
     end
 
     def client
@@ -18,8 +18,8 @@ module Zenhub2pivotal
       end
 
       def pipelines
-        Hash[
-          @data['pipelines'].map{|pipeline_data|
+        @pipelines ||= Hash[
+          @data['pipelines'].dup.map{|pipeline_data|
             [pipeline_data.delete('name'), pipeline_data]
           }
         ]
