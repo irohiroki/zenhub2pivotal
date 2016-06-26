@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hiroki Yoshioka"]
   spec.email         = ["irohiroki@gmail.com"]
 
-  spec.summary       = %q{Exports issues from Zenhub and imports to Pivotal Tracker.}
-  spec.description   = %q{Exports issues from Zenhub and imports to Pivotal Tracker.}
+  spec.summary       = %q{ZenHub to Pivotal Tracker migration tool.}
+  spec.description   = %q{Exports issues from ZenHub (GitHub) and makes csv that can be imported to Pivotal Tracker.}
   spec.homepage      = "https://github.com/irohiroki/zenhub2pivotal"
   spec.license       = "MIT"
 
