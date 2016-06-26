@@ -41,10 +41,14 @@ module Zenhub2pivotal
       end
     end
 
-    def labels
+    def github_labels
       @attrs[:labels].map{|label|
         label[:name]
-      }.join(',') if @attrs[:labels]
+      }
+    end
+
+    def labels
+      (github_labels + [repo_name]).join(',')
     end
 
     def estimate
@@ -53,6 +57,10 @@ module Zenhub2pivotal
 
     def position
       @attrs['position']
+    end
+
+    def repo_name
+      @attrs[:repo_name][/(?<=\/).*/]
     end
 
     def user_login
