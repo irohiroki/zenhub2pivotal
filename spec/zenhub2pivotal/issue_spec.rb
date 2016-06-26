@@ -29,13 +29,16 @@ describe Zenhub2pivotal::Issue do
     updated_at: Time.parse("2016-03-24T05:47:01Z"),
     closed_at: nil,
     body: "Body1Line1\r\nLine2",
+    'estimate' => {
+      'value' => 3,
+    },
   ) }
 
   describe '#csv' do
     subject { issue.csv(panel: 'current') }
 
     it 'retruns a line of csv' do
-      expect(subject).to eq %|,Title1,"baz,qux",,,,,,started,"Mar 3, 2016",,,irohiroki,"Body1Line1\r\nLine2",,irohiroki,\n|
+      expect(subject).to eq %|,Title1,"baz,qux",,,,,3,started,"Mar 3, 2016",,,irohiroki,"Body1Line1\r\nLine2",,irohiroki,\n|
     end
   end
 end

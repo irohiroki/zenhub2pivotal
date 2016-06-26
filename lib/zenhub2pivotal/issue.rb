@@ -37,7 +37,7 @@ module Zenhub2pivotal
     def csv(panel:)
       CSV.generate do |csv|
         #       Id , Title, Labels, Iteration, Iteration Start, Iteration End, Type, Estimate, Current State, Created at, Accepted at, Deadline, Requested By, Description, URL, Owned By , Comment
-        csv << [nil, title, labels, nil      , nil            , nil          , nil , nil     , STATE[panel] , created_at, accepted_at, nil     , user_login  , body       , nil, assignee, nil]
+        csv << [nil, title, labels, nil      , nil            , nil          , nil , estimate, STATE[panel] , created_at, accepted_at, nil     , user_login  , body       , nil, assignee, nil]
       end
     end
 
@@ -45,6 +45,10 @@ module Zenhub2pivotal
       @attrs[:labels].map{|label|
         label[:name]
       }.join(',') if @attrs[:labels]
+    end
+
+    def estimate
+      @attrs['estimate'] && @attrs['estimate']['value']
     end
 
     def position
