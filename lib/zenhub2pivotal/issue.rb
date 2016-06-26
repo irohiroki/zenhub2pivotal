@@ -3,6 +3,13 @@ require 'ostruct'
 
 module Zenhub2pivotal
   class Issue
+    STATE = {
+      'done'    => 'accepted',
+      'current' => 'started',
+      'backlog' => 'unstarted',
+      'icebox'  => 'unscheduled',
+    }
+
     def initialize(attrs)
       @attrs = attrs
     end
@@ -19,10 +26,10 @@ module Zenhub2pivotal
       format_time(:created_at)
     end
 
-    def csv(panel: nil) # TODO
+    def csv(panel:)
       CSV.generate do |csv|
         #       Id , Title, Labels, Iteration, Iteration Start, Iteration End, Type, Estimate, Current State, Created at, Accepted at, Deadline, Requested By, Description, URL, Owned By , Comment
-        csv << [nil, title, labels, nil      , nil            , nil          , nil , nil     , state        , created_at, accepted_at, nil     , user_login  , body       , nil, assignee, nil]
+        csv << [nil, title, labels, nil      , nil            , nil          , nil , nil     , STATE[panel] , created_at, accepted_at, nil     , user_login  , body       , nil, assignee, nil]
       end
     end
 
@@ -30,15 +37,6 @@ module Zenhub2pivotal
       @attrs[:labels].map{|label|
         label[:name]
       }.join(',') if @attrs[:labels]
-    end
-
-    def state
-      case @attrs[:state]
-      when 'closed'
-        'accepted'
-      when 'open'
-        'unstarted'
-      end
     end
 
     def user_login
