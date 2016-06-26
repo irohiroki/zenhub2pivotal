@@ -19,7 +19,7 @@ module Zenhub2pivotal
       format_time(:created_at)
     end
 
-    def csv
+    def csv(panel: nil) # TODO
       CSV.generate do |csv|
         #       Id , Title, Labels, Iteration, Iteration Start, Iteration End, Type, Estimate, Current State, Created at, Accepted at, Deadline, Requested By, Description, URL, Owned By , Comment
         csv << [nil, title, labels, nil      , nil            , nil          , nil , nil     , state        , created_at, accepted_at, nil     , user_login  , body       , nil, assignee, nil]

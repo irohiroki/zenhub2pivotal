@@ -1,0 +1,7 @@
+github_access_token: 0123456789abcdef0123456789abcdef01234567
+zenhub_access_token: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+pipelines:
+  wishlist: icebox
+  todo: backlog
+  doing: current
+  done: done
