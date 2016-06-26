@@ -52,7 +52,7 @@ Issue comments are not supported.
 
 ### Issue order
 
-Some issues might appear in a different position (order) in Pivotal Tracker. TODO: check Issue#<=>
+Some issues might appear in a different position (order) in Pivotal Tracker. (The tool orders issues based on their position value fetched from ZenHub API.)
 
 ## Contributing
 
