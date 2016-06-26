@@ -14,6 +14,14 @@ module Zenhub2pivotal
       @attrs = attrs
     end
 
+    def <=>(other)
+      if position.nil?
+        other.position.nil? ? 0 : 1
+      else
+        other.position.nil? ? -1 : position - other.position
+      end
+    end
+
     def accepted_at
       format_time(:closed_at)
     end
@@ -37,6 +45,10 @@ module Zenhub2pivotal
       @attrs[:labels].map{|label|
         label[:name]
       }.join(',') if @attrs[:labels]
+    end
+
+    def position
+      @attrs['position']
     end
 
     def user_login

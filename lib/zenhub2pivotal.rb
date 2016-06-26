@@ -21,9 +21,7 @@ module Zenhub2pivotal
       Config.pipelines.each do |pipeline_name, panel|
         repositories.flat_map {|repository|
           repository.issues(pipeline: pipeline_name)
-        }.sort {
-          0 # TODO
-        }.each {|issue|
+        }.sort.each {|issue|
           @out.puts(issue.csv(panel: panel))
         }
       end
