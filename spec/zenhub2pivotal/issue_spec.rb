@@ -16,7 +16,7 @@ describe Zenhub2pivotal::Issue do
     },
     labels: [
       {name: "baz"},
-      {name: "qux"},
+      {name: "bug"},
     ],
     state: "open",
     locked: false,
@@ -39,7 +39,7 @@ describe Zenhub2pivotal::Issue do
     subject { issue.csv(panel: 'current') }
 
     it 'retruns a line of csv' do
-      expect(subject).to eq %|,Title1,"baz,qux,bar",,,,,3,started,"Mar 3, 2016",,,irohiroki,"Body1Line1\r\nLine2",,irohiroki,\n|
+      expect(subject).to eq %|,Title1,"baz,bar",,,,bug,3,started,"Mar 3, 2016",,,irohiroki,"Body1Line1\r\nLine2",,irohiroki,\n|
     end
   end
 end
